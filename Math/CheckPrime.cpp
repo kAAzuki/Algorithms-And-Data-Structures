@@ -7,7 +7,8 @@ bool isprime(int x)
   int s = (int)(sqrt((double)(x))+EPS);
   for(int i=5; i<=s; i+=6)
   {
-    if (!(x%i) || !(x%(i+2))) return false;
+    if (!(x%i) || !(x%(i+2))) 
+      return false;
   }
   return true;
 }
