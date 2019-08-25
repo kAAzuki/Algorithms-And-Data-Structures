@@ -1,3 +1,6 @@
+
+// Use Modpow if Number to check is less than 1e9
+
 namespace miller_rabin
 {
   long long mul(long long a,long long b,long long c)
@@ -25,13 +28,21 @@ namespace miller_rabin
 		}
 		return ret;
 	}
+	int modpow(int x, int n, int m) 
+	{
+    		if (n == 0) return 1%m;
+    		long long u = modpow(x,n/2,m);
+    		u = (u*u)%m;
+    		if (n%2 == 1) u = (u*x)%m;
+    		return u;
+	}
 	bool miller_rabin(int x, int a)
 	{
 		if(x % a == 0) return 0;
 		int d = x - 1;
 		while(1)
         {
-			int tmp = ipow(a, d, x);
+			int tmp = ipow(a, d, x); // Replace Here with modpow
 			if(d&1) return (tmp != 1 && tmp != x-1);
 			else if(tmp == x-1) return 0;
 			d >>= 1;
